@@ -10,10 +10,8 @@ jobs:
     - name: copycode
       uses: actions/checkout@v4
 
-    - name: build
-      uses: build . .
-
-    
+    - name: build docker image
+      run: docker build -t myapp:v1 . .
 
   pushimage:
     runs-on: ubuntu-latest

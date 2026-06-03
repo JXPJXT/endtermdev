@@ -10,8 +10,8 @@ jobs:
     - name: copycode
       uses: actions/checkout@v4
 
-    -name: build
-    uses: build . .
+    - name: build
+      uses: build . .
 
     
 

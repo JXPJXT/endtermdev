@@ -1,0 +1,38 @@
+name: dockerbuildpush
+
+on:
+  push:
+
+jobs:
+  buildimage:
+
+    runs-on: ubuntu-latest
+
+    - name: copycode
+      uses: actions/chekout@v4
+
+    - name: build docker image
+      run: docker build -t myapp:v1
+
+  pushimage:
+
+    runs-on: ubuntu-latest
+
+    - name: copy image
+      uses: actions/checkout@v4
+
+    - name: login ghcr
+      run: docker login ghcr.io
+
+    - name: username add
+      run: ${{githubuser}}
+    
+    - name: pat token add
+      run: ${{pattoken}}
+
+    - name: tag image
+      run: docker tag myapp:v1 ghcr.io/jxpjxt/myapp:v1
+
+    - name: push image
+      run: docker push ghcr.io/jxpjxt/myapp:v1
+

@@ -1,4 +1,4 @@
 FROM python:3.11.0
-WORKDIR: /app
+WORKDIR /app
 COPY . . 
-CMD: ["python","main.py"]
+CMD ["python","main.py"]

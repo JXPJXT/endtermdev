@@ -5,30 +5,22 @@ on:
 
 jobs:
   buildimage:
-
     runs-on: ubuntu-latest
-
+    steps:
     - name: copycode
-      uses: actions/chekout@v4
+      uses: actions/checkout@v4
 
     - name: build docker image
-      run: docker build -t myapp:v1
+      run: docker build -t myapp:v1 .
 
   pushimage:
-
     runs-on: ubuntu-latest
-
+    steps:
     - name: copy image
       uses: actions/checkout@v4
 
     - name: login ghcr
-      run: docker login ghcr.io
-
-    - name: username add
-      run: ${{githubuser}}
-    
-    - name: pat token add
-      run: ${{pattoken}}
+      run: docker login ghcr.io -u ${{ secrets.GHCR_USERNAME }} -p ${{ secrets.GHCR_TOKEN }}
 
     - name: tag image
       run: docker tag myapp:v1 ghcr.io/jxpjxt/myapp:v1

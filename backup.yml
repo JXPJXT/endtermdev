@@ -12,7 +12,10 @@ jobs:
 
     - name: build docker image
       run: docker build -t myapp:v1 . 
-      
+
+  pushimage
+    runs-on: ubuntu-latest
+    steps:
     - name: copy image
       uses: actions/checkout@v4
 
